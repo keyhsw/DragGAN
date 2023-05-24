@@ -192,7 +192,7 @@ def main():
 
     with gr.Blocks() as demo:
         wrapped_model = ModelWrapper()
-        model = gr.State(wrapped_model)
+        model = wrapped_model
         sample_z = torch.randn([1, 512], device=device)
         latent, noise = wrapped_model.g_ema.prepare([sample_z])
         sample, F = wrapped_model.g_ema.generate(latent, noise)
@@ -213,15 +213,15 @@ def main():
             
             """,
         )
-        state = gr.State({
+        state = {
             'latent': latent,
             'noise': noise,
             'F': F,
             'sample': sample,
             'history': []
-        })
-        points = gr.State({'target': [], 'handle': []})
-        size = gr.State(1024)
+        }
+        points = {'target': [], 'handle': []}
+        size = 1024
 
         with gr.Row():
             with gr.Column(scale=0.3):
