@@ -1,8 +1,10 @@
 gradio
 tqdm
 torch
+torchvision
 numpy
 ninja
 fire
 imageio
-torchvision
+imageio-ffmpeg
+scikit-image
