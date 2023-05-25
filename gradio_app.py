@@ -192,7 +192,7 @@ def main():
 
     with gr.Blocks() as demo:
         wrapped_model = ModelWrapper()
-        model = wrapped_model
+        model = gr.State(wrapped_model)
         sample_z = torch.randn([1, 512], device=device)
         latent, noise = wrapped_model.g_ema.prepare([sample_z])
         sample, F = wrapped_model.g_ema.generate(latent, noise)
