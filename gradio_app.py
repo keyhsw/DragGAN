@@ -213,15 +213,15 @@ def main():
             
             """,
         )
-        state = {
+        state = gr.Sate({
             'latent': latent,
             'noise': noise,
             'F': F,
             'sample': sample,
             'history': []
-        }
+        })
         points = {'target': [], 'handle': []}
-        size = 1024
+        size = gr.State(1024)
 
         with gr.Row():
             with gr.Column(scale=0.3):
