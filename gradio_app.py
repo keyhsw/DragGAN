@@ -142,13 +142,13 @@ def on_change_model(selected, model):
     latent, noise = g_ema.prepare([sample_z])
     sample, F = g_ema.generate(latent, noise)
 
-    state = {
+    state = gr.State({
         'latent': latent,
         'noise': noise,
         'F': F,
         'sample': sample,
         'history': []
-    }
+    })
     return model, state, to_image(sample), size
 
 
@@ -158,14 +158,14 @@ def on_new_image(model):
     latent, noise = g_ema.prepare([sample_z])
     sample, F = g_ema.generate(latent, noise)
 
-    state = {
+    state = gr.State({
         'latent': latent,
         'noise': noise,
         'F': F,
         'sample': sample,
         'history': []
-    }
-    points = {'target': [], 'handle': []}
+    })
+    points = gr.State({'target': [], 'handle': []})
     target_point = False
     return to_image(sample), to_image(sample), state, points, target_point
 
